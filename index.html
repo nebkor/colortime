@@ -45,7 +45,14 @@ table { position:absolute; width:100%; height:100%; top:0px; left:0px;}
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script type="text/javascript">
 
-Number.prototype.rangemap=function(a,b,c,d){return Math.ceil(c+(d-c)*((this-a)/(b-a)))};
+function mapRange(from, to, s) {
+  return Math.ceil(to[0] + (s - from[0]) * (to[1] - to[0]) / (from[1] - from[0]));
+};
+
+var hourvals = [0, 23];
+var minutevals = [0, 59];
+var secondvals = minutevals;
+var colorvals = [0, 255];
 
 function rgb2hex(r,g,b) {
     if (g !== undefined) 
@@ -62,6 +69,12 @@ function dotime(){
 	var hours = d.getHours();
 	var mins = d.getMinutes();
 	var secs = d.getSeconds();
+
+	var red = mapRange(hourvals, colorvals, hours);
+	var green = mapRange(minutevals, colorvals, mins);
+	var blue = mapRange(secondvals, colorvals, secs);
+
+	var rgbhex = rgb2hex(red, green, blue);
 	
 	if (hours < 10){hours = "0" + hours};
 	if (mins < 10){mins = "0" + mins};
@@ -71,7 +84,7 @@ function dotime(){
 	mins.toString();
 	secs.toString();
 	
-	var hex = "#" + hours + mins + secs;
+	var hex = "#" + rgbhex;
 	
 	$("#t").html(hours +" : "+ mins +" : "+ secs);
 	$("#h").html(hex);
