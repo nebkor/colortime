@@ -45,6 +45,14 @@ table { position:absolute; width:100%; height:100%; top:0px; left:0px;}
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script type="text/javascript">
 
+Number.prototype.rangemap=function(a,b,c,d){return Math.ceil(c+(d-c)*((this-a)/(b-a)))};
+
+function rgb2hex(r,g,b) {
+    if (g !== undefined) 
+        return Number(0x1000000 + r*0x10000 + g*0x100 + b).toString(16).substring(1).toUpperCase();
+    else 
+        return Number(0x1000000 + r[0]*0x10000 + r[1]*0x100 + r[2]).toString(16).substring(1).toUpperCase();
+}
 
 function dotime(){
 	
