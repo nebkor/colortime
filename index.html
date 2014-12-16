@@ -92,14 +92,17 @@ function dotime(){
 
 	var hex = "#" + rgbhex;
 
+        if (getBrightness(red, green, blue) < 50) {
+           $("#t").css('color', 'white');
+           $("#h").css('color', 'white');
+        } else {
+           $("#t").css('color', 'black');
+           $("#h").css('color', 'black');
+        }
+
 	$("#t").html(hours +" : "+ mins +" : "+ secs);
 	$("#h").html(hex);
 
-        if (getBrightness(red, green, blue) < 50) {
-            document.body.style.color = light;
-        } else {
-            document.body.style.color = dark;
-        }
 
 	document.body.style.background = hex;
 
