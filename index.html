@@ -54,7 +54,7 @@ var minutevals = [0, 59];
 var secondvals = minutevals;
 var colorvals = [0, 255];
 var light = "#ffffff";
-var dark = "#303030";
+var dark = "#6e6e6e";
 
 function rgb2hex(r,g,b) {
     if (g !== undefined)
@@ -92,12 +92,12 @@ function dotime(){
 
 	var hex = "#" + rgbhex;
 
-        if (getBrightness(red, green, blue) < 50) {
+        if (getBrightness(red, green, blue) < 135) {
            $("#t").css('color', 'white');
            $("#h").css('color', 'white');
         } else {
-           $("#t").css('color', 'black');
-           $("#h").css('color', 'black');
+           $("#t").css('color', dark);
+           $("#h").css('color', dark);
         }
 
 	$("#t").html(hours +" : "+ mins +" : "+ secs);
