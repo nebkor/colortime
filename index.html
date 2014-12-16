@@ -11,6 +11,8 @@
 <meta property="og:url" content="http://colortime.nebcorp.com/" />
 <meta property="og:image" content="http://wwn.nebcorp.com/images/buttons/navlogo.gif" />
 
+<!-- Source code originally from http://whatcolourisit.scn9a.org/ -->
+
 <style>
 
 @media all and (max-width: 1024px) {
@@ -45,17 +47,14 @@ table { position:absolute; width:100%; height:100%; top:0px; left:0px;}
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 <script type="text/javascript">
 
-function mapRange(from, to, s) {
-  return Math.ceil(to[0] + (s - from[0]) * (to[1] - to[0]) / (from[1] - from[0]));
-};
-
 var hourvals = [0, 23];
 var minutevals = [0, 59];
 var secondvals = minutevals;
 var colorvals = [0, 255];
 var light = "#ffffff";
-var dark = "#6e6e6e";
+var dark = "#848484";
 
+// http://stackoverflow.com/a/13397771
 function rgb2hex(r,g,b) {
     if (g !== undefined)
         return Number(0x1000000 + r*0x10000 + g*0x100 + b).toString(16).substring(1).toUpperCase();
@@ -63,9 +62,15 @@ function rgb2hex(r,g,b) {
         return Number(0x1000000 + r[0]*0x10000 + r[1]*0x100 + r[2]).toString(16).substring(1).toUpperCase();
 }
 
+// taken from http://www.nbdtech.com/Blog/archive/2008/04/27/Calculating-the-Perceived-Brightness-of-a-Color.aspx
 function getBrightness(r, g, b) {
        return Math.sqrt( (0.241 * (r * r)) + (0.691 * (g * g)) + (0.068 * (b * b)) );
 }
+
+// http://rosettacode.org/wiki/Map_range#JavaScript
+function mapRange(from, to, s) {
+  return Math.ceil(to[0] + (s - from[0]) * (to[1] - to[0]) / (from[1] - from[0]));
+};
 
 function dotime(){
 
