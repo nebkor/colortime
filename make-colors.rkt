@@ -11,14 +11,12 @@
   (~r t #:min-width 2 #:pad-string "0"))
 
 (define (mk-times)
-  (for*/fold
-      ([times '()]) ; accumulator expression
+  (for*/list
       ([h 24]
        [m 60]
        [s 60]) ; generator expressions
-    (append times
-            (list (~a (time-string h) (time-string m) (time-string s)
-                      #:separator ":")))))
+    (~a (time-string h) (time-string m) (time-string s)
+        #:separator ":")))
 
 (define (make-range-map from-min from-max to-min to-max)
   ;; stolen with minor differences from http://rosettacode.org/wiki/Map_range#Racket
