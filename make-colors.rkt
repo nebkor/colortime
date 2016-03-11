@@ -172,9 +172,9 @@
 ;; For some reason, I can't make a bitmap that's 86400xN, so sample
 ;; the time range with this.
 (define (every-nth lst n)
-  (filter-not void? (for/list ([i (in-range (length lst))])
-                      (when (zero? (modulo i n))
-                        (list-ref lst i)))))
+  (for/list ([i (in-range (length lst))]
+             #:when (zero? (modulo i n)))
+    (list-ref lst i)))
 
 (define c-width 1)
 (define c-height 10000)
@@ -184,11 +184,11 @@
 (define dc (send target make-dc))
 
 ;; WARNING! Will create files on disk if you evaluate this file!
-(draw-color-times-linear (every-nth hue-times nth-to-pick) c-width c-height target dc "hue.png")
-(draw-color-times-linear (every-nth vsh-times nth-to-pick) c-width c-height target dc "vsh.png")
-(draw-color-times-linear (every-nth vhs-times nth-to-pick) c-width c-height target dc "vhs.png")
-(draw-color-times-linear (every-nth shv-times nth-to-pick) c-width c-height target dc "shv.png")
-(draw-color-times-linear (every-nth svh-times nth-to-pick) c-width c-height target dc "svh.png")
-(draw-color-times-linear (every-nth hvs-times nth-to-pick) c-width c-height target dc "hvs.png")
-(draw-color-times-linear (every-nth hsv-times nth-to-pick) c-width c-height target dc "hsv.png")
-(draw-color-times-linear (every-nth rgb-times nth-to-pick) c-width c-height target dc "rgb.png")
+;; (draw-color-times-linear (every-nth hue-times nth-to-pick) c-width c-height target dc "hue.png")
+;; (draw-color-times-linear (every-nth vsh-times nth-to-pick) c-width c-height target dc "vsh.png")
+;; (draw-color-times-linear (every-nth vhs-times nth-to-pick) c-width c-height target dc "vhs.png")
+;; (draw-color-times-linear (every-nth shv-times nth-to-pick) c-width c-height target dc "shv.png")
+;; (draw-color-times-linear (every-nth svh-times nth-to-pick) c-width c-height target dc "svh.png")
+;; (draw-color-times-linear (every-nth hvs-times nth-to-pick) c-width c-height target dc "hvs.png")
+;; (draw-color-times-linear (every-nth hsv-times nth-to-pick) c-width c-height target dc "hsv.png")
+;; (draw-color-times-linear (every-nth rgb-times nth-to-pick) c-width c-height target dc "rgb.png")
